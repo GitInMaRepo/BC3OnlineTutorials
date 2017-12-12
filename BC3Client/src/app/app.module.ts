@@ -3,13 +3,14 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { DatenService } from '../services/daten.service';
-
+import {HttpModule} from '@angular/http';
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpModule
   ],
   providers: [DatenService],
   bootstrap: [AppComponent]

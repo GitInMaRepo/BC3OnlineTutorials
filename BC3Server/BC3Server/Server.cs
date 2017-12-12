@@ -17,7 +17,11 @@ namespace BC3Server
                 Data2 = "noch mehr Daten"
             };
 
-            Get["/"] = _ => Response.AsJson(data);
+            Get["/"] = _ => Response.AsJson(data)
+            .WithHeader("Access-Control-Allow-Origin", "*")
+                            .WithHeader("Access-Control-Allow-Methods", "POST,GET")
+.WithHeader("Access-Control-Allow-Headers", "Accept, Origin, Content-type");
+
         }
     }
 

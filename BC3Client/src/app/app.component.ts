@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {DatenService} from '../services/daten.service';
+import { Person } from '../models/model';
 
 @Component({
   selector: 'app-root',
@@ -8,10 +9,13 @@ import {DatenService} from '../services/daten.service';
 })
 export class AppComponent implements OnInit {
   title = 'app';
-  daten: string;
+  daten: Person;
+
 
   constructor (private datenservice: DatenService) { }
   ngOnInit() {
-    this.daten = this.datenservice.LeseDaten();
+    this.daten = new Person();
+    this.daten.data = 'lese gerade daten..';
+    this.datenservice.GetData().subscribe(result => this.daten = result);
    }
 }
