@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BC3Server
 {
-    internal class MyRootdata
+    internal class Person
     { 
         public string Data { get; internal set; }
         public string Data2 { get; internal set; }

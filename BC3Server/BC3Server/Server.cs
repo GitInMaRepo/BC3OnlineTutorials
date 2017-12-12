@@ -11,16 +11,34 @@ namespace BC3Server
     {
         public Server()
         {
-            var data = new MyRootdata
+            List<Person> dataList = new List<Person>
+            {
+                new Person
             {
                 Data = "Meine ersten Daten",
                 Data2 = "noch mehr Daten"
+            },
+            new Person
+            {
+                Data = "Hans",
+                Data2 = "Huber"
+            },
+            new Person
+            {
+                Data = "Fritz",
+                Data2 = "Fischer"
+            }
             };
 
-            Get["/"] = _ => Response.AsJson(data)
-            .WithHeader("Access-Control-Allow-Origin", "*")
+            Get["/"] = _ => Response.AsJson(dataList.FirstOrDefault())
+                            .WithHeader("Access-Control-Allow-Origin", "*")
                             .WithHeader("Access-Control-Allow-Methods", "POST,GET")
-.WithHeader("Access-Control-Allow-Headers", "Accept, Origin, Content-type");
+                            .WithHeader("Access-Control-Allow-Headers", "Accept, Origin, Content-type");
+
+            Get["/All"] = _ => Response.AsJson(dataList)
+                            .WithHeader("Access-Control-Allow-Origin", "*")
+                            .WithHeader("Access-Control-Allow-Methods", "POST,GET")
+                            .WithHeader("Access-Control-Allow-Headers", "Accept, Origin, Content-type");
 
         }
     }

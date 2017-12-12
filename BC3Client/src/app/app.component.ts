@@ -10,12 +10,14 @@ import { Person } from '../models/model';
 export class AppComponent implements OnInit {
   title = 'app';
   daten: Person;
-
+  allDaten: Person[];
 
   constructor (private datenservice: DatenService) { }
   ngOnInit() {
     this.daten = new Person();
+    this.allDaten = [];
     this.daten.data = 'lese gerade daten..';
     this.datenservice.GetData().subscribe(result => this.daten = result);
+    this.datenservice.GetAllData().subscribe(result => this.allDaten = result);
    }
 }
