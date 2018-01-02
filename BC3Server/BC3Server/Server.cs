@@ -15,16 +15,19 @@ namespace BC3Server
             {
                 new Person
             {
+                id = "1",
                 Data = "Meine ersten Daten",
                 Data2 = "noch mehr Daten"
             },
             new Person
             {
+                id = "2",
                 Data = "Hans",
                 Data2 = "Huber"
             },
             new Person
             {
+                id = "3",
                 Data = "Fritz",
                 Data2 = "Fischer"
             }
@@ -40,7 +43,15 @@ namespace BC3Server
                             .WithHeader("Access-Control-Allow-Methods", "POST,GET")
                             .WithHeader("Access-Control-Allow-Headers", "Accept, Origin, Content-type");
 
+            Get["/{id}"] = parameter =>
+            {
+                string index = parameter.id;
+                return Response.AsJson(dataList.FirstOrDefault(i=>i.id==index))
+                            .WithHeader("Access-Control-Allow-Origin", "*")
+                            .WithHeader("Access-Control-Allow-Methods", "POST,GET")
+                            .WithHeader("Access-Control-Allow-Headers", "Accept, Origin, Content-type");
+            };
+
         }
     }
-
 }

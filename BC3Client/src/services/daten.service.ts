@@ -19,4 +19,9 @@ export class DatenService {
         .map((response: Response) => response.json())
         .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
     }
+    GetSinglePerson(id: number): Observable<Person> {
+        return this.http.get(`http://localhost:8088/${id}`)
+        .map((response: Response) => response.json())
+        .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+    }
 }
