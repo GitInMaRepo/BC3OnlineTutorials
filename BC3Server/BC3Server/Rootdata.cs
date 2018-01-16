@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace BC3Server
 {
-    internal class Person
+    public class Person
     {
         public string id = "0"; 
-        public string Data { get; internal set; }
-        public string Data2 { get; internal set; }
+        public string Data { get; set; }
+        public string Data2 { get; set; }
     }
 }
