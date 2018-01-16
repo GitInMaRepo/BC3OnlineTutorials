@@ -60,6 +60,7 @@ namespace UnitTestProject1
         }
 
 
+        [Ignore]
         [TestMethod]
         public void TDatenbank_CreateTable()
         {

@@ -6,16 +6,18 @@ import { DatenService } from '../services/daten.service';
 import {HttpModule} from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 import { AppDetailComponent } from './app-detail/app-detail.component';
+import { OverviewComponent } from './overview/overview.component';
 
 const appRoutes: Routes = [
   { path: 'person/:id', component: AppDetailComponent },
-  { path: '', component: AppComponent },
+  { path: '', component: OverviewComponent },
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    AppDetailComponent
+    AppDetailComponent,
+    OverviewComponent
   ],
   imports: [
     BrowserModule,

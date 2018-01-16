@@ -1,0 +1,8 @@
+<div>
+    <ul class="dinoOverview">
+        <li *ngFor="let sth of allDaten">
+            <a routerLink='/person/{{sth.id}}'><span class="dinoId">{{sth.id}}</span> {{sth.data}}</a>
+            <br />
+        </li>
+    </ul>
+</div>
