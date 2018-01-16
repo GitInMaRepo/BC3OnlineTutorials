@@ -52,7 +52,7 @@ namespace UnitTestProject1
         {
             var dataAdapter = new Dataadapter();
             //A Datenv
-            dataAdapter.InsertPerson(new Person { id = "1", Data = "T_Rex", Data2 = "Hans" });
+            dataAdapter.InsertPerson(new Person { id = "1", Data = "T_Rex", Data1 = "Hans" });
 
             var result = dataAdapter.SelectPerson(1);
 

@@ -10,6 +10,6 @@ namespace BC3Server
     {
         public string id = "0"; 
         public string Data { get; set; }
-        public string Data2 { get; set; }
+        public string Data1 { get; set; }
     }
 }

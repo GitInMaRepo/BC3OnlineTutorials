@@ -24,7 +24,7 @@ namespace BC3Server
         {
             string addDataCommand =
             $"INSERT INTO Person (Id, Name, Vorname)" +
-            $" VALUES ({person.id}, '{person.Data}', '{person.Data2}')";
+            $" VALUES ({person.id}, '{person.Data}', '{person.Data1}')";
 
             using (var conn = new SQLiteConnection($"Data Source={tablePath}"))
             {
@@ -64,7 +64,7 @@ namespace BC3Server
                     {
                         id = reader[0].ToString(),
                         Data = (string)reader[1],
-                        Data2 = (string)reader[2]
+                        Data1 = (string)reader[2]
                     };
 
                 reader.Close();
