@@ -24,11 +24,11 @@ export class DatenService {
         .map((response: Response) => response.json())
         .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
     }
-    SaveData(): any {
+    SaveData(vorname: string, nachname: string): any {
 
         const person = new Person();
-        person.data = 'Donald';
-        person.data1 = 'Trump';
+        person.data = vorname;
+        person.data1 = nachname;
 
         const requestHeaders = new Headers({'Content-Type': 'application/json'});
         const requestOptions = new RequestOptions({headers: requestHeaders});

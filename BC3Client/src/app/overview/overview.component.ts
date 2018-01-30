@@ -23,6 +23,6 @@ export class OverviewComponent implements OnInit {
    }
 
    OnSubmit() {
-    this.datenservice.SaveData();
+    this.datenservice.SaveData('Donald', 'Trump');
    }
 }
