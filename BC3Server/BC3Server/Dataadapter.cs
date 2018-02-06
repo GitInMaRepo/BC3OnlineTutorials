@@ -67,10 +67,66 @@ namespace BC3Server
                         Data1 = (string)reader[2]
                     };
 
-                reader.Close();
+                    reader.Close();
 
-                return result;
+                    return result;
                 }
+            }
+        }
+
+        public List<Person> SelectPersons()
+        {
+            string selectDataCommand =
+            $"Select * From Person";
+
+            using (var conn = new SQLiteConnection($"Data Source={tablePath}"))
+            {
+                conn.Open();
+
+                SQLiteCommand selectCmd = new SQLiteCommand(conn)
+                {
+                    CommandText = selectDataCommand
+                };
+
+                var resultList = new List<Person>();
+
+                using (var reader = selectCmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var result = new Person
+                        {
+                            id = reader[0].ToString(),
+                            Data = (string)reader[1],
+                            Data1 = (string)reader[2]
+                        };
+
+                        resultList.Add(result);
+                    }
+                    reader.Close();
+
+                    return resultList;
+                }
+            }
+        }
+
+        public void DeletePersons()
+        {
+            string dataCommand =
+            $"Delete From Person";
+
+            using (var conn = new SQLiteConnection($"Data Source={tablePath}"))
+            {
+                conn.Open();
+
+                SQLiteCommand cmd = new SQLiteCommand(conn)
+                {
+                    CommandText = dataCommand
+                };
+
+
+                cmd.ExecuteNonQuery();
+
             }
         }
     }

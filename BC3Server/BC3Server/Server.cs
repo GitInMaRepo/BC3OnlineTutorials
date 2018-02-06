@@ -12,27 +12,8 @@ namespace BC3Server
     {
         public Server()
         {
-            List<Person> dataList = new List<Person>
-            {
-                new Person
-            {
-                id = "1",
-                Data = "Meine ersten Daten",
-                Data1 = "noch mehr Daten"
-            },
-            new Person
-            {
-                id = "2",
-                Data = "Hans",
-                Data1 = "Huber"
-            },
-            new Person
-            {
-                id = "3",
-                Data = "Fritz",
-                Data1 = "Fischer"
-            }
-            };
+            var da = new Dataadapter();
+            List<Person> dataList = da.SelectPersons();
 
             Get["/"] = _ => Response.AsJson(dataList.FirstOrDefault())
                             .WithHeader("Access-Control-Allow-Origin", "*")
@@ -64,7 +45,7 @@ namespace BC3Server
             Post["/Set"] = parameter =>
                 {
                     var model = this.Bind<Person>();
-                    dataList.Add(model);
+                    da.InsertPerson(model);
                     return null;
                 };
         }

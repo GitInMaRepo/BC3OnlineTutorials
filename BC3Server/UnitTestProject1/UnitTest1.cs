@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Data.SQLite;
 using BC3Server;
+using System.Collections.Generic;
 
 namespace UnitTestProject1
 {
@@ -28,7 +29,6 @@ namespace UnitTestProject1
         public void TDatenbankOeffnenUndSchliessen()
         {
             var dataAdapter = new Dataadapter();
-            //A Datenv
             var conn = dataAdapter.OpenDbConnection(); 
 
             Assert.IsTrue(conn.State == System.Data.ConnectionState.Open);
@@ -51,7 +51,8 @@ namespace UnitTestProject1
         public void TDatenbank_Insert()
         {
             var dataAdapter = new Dataadapter();
-            //A Datenv
+            dataAdapter.DeletePersons();
+
             dataAdapter.InsertPerson(new Person { id = "1", Data = "T_Rex", Data1 = "Hans" });
 
             var result = dataAdapter.SelectPerson(1);
@@ -67,6 +68,33 @@ namespace UnitTestProject1
             OnlyCreateTable();
         }
 
+        [TestMethod]
+        public void TDatenbank_DeletePersons()
+        {
+            var dataAdapter = new Dataadapter();
+            dataAdapter.InsertPerson(new Person { id = "1", Data = "T_Rex", Data1 = "Hans" });
+            dataAdapter.InsertPerson(new Person { id = "2", Data = "Müller", Data1 = "Max" });
+            dataAdapter.InsertPerson(new Person { id = "3", Data = "Meier", Data1 = "Tom" });
+
+            dataAdapter.DeletePersons();
+
+            List<Person> result = dataAdapter.SelectPersons();
+            Assert.AreEqual(0, result.Count);
+        }
+
+        [TestMethod]
+        public void TDatenbank_SelectPersons()
+        {
+            var dataAdapter = new Dataadapter();
+            dataAdapter.DeletePersons();
+
+            dataAdapter.InsertPerson(new Person { id = "1", Data = "T_Rex", Data1 = "Hans" });
+            dataAdapter.InsertPerson(new Person { id = "2", Data = "Müller", Data1 = "Max" });
+            dataAdapter.InsertPerson(new Person { id = "3", Data = "Meier", Data1 = "Tom" });
+
+            List<Person> result = dataAdapter.SelectPersons();
+            Assert.AreEqual(3, result.Count);
+        }
 
     }
 }
