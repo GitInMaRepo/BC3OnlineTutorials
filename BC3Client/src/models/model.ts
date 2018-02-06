@@ -1,5 +1,5 @@
 export class Person {
-    data: string;
-    data1: string;
+    vorname: string;
+    nachname: string;
     id: string;
 }

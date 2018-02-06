@@ -27,8 +27,8 @@ export class DatenService {
     SaveData(vorname: string, nachname: string): any {
 
         const person = new Person();
-        person.data = vorname;
-        person.data1 = nachname;
+        person.vorname = vorname;
+        person.nachname = nachname;
 
         const requestHeaders = new Headers({'Content-Type': 'application/json'});
         const requestOptions = new RequestOptions({headers: requestHeaders});

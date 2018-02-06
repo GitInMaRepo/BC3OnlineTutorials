@@ -53,7 +53,7 @@ namespace UnitTestProject1
             var dataAdapter = new Dataadapter();
             dataAdapter.DeletePersons();
 
-            dataAdapter.InsertPerson(new Person { id = "1", Data = "T_Rex", Data1 = "Hans" });
+            dataAdapter.InsertPerson(new Person { id = "1", Vorname = "T_Rex", Nachname = "Hans" });
 
             var result = dataAdapter.SelectPerson(1);
 
@@ -72,9 +72,9 @@ namespace UnitTestProject1
         public void TDatenbank_DeletePersons()
         {
             var dataAdapter = new Dataadapter();
-            dataAdapter.InsertPerson(new Person { id = "1", Data = "T_Rex", Data1 = "Hans" });
-            dataAdapter.InsertPerson(new Person { id = "2", Data = "Müller", Data1 = "Max" });
-            dataAdapter.InsertPerson(new Person { id = "3", Data = "Meier", Data1 = "Tom" });
+            dataAdapter.InsertPerson(new Person { id = "1", Vorname = "T_Rex", Nachname = "Hans" });
+            dataAdapter.InsertPerson(new Person { id = "2", Vorname = "Müller", Nachname = "Max" });
+            dataAdapter.InsertPerson(new Person { id = "3", Vorname = "Meier", Nachname = "Tom" });
 
             dataAdapter.DeletePersons();
 
@@ -88,9 +88,9 @@ namespace UnitTestProject1
             var dataAdapter = new Dataadapter();
             dataAdapter.DeletePersons();
 
-            dataAdapter.InsertPerson(new Person { id = "1", Data = "T_Rex", Data1 = "Hans" });
-            dataAdapter.InsertPerson(new Person { id = "2", Data = "Müller", Data1 = "Max" });
-            dataAdapter.InsertPerson(new Person { id = "3", Data = "Meier", Data1 = "Tom" });
+            dataAdapter.InsertPerson(new Person { id = "1", Vorname = "T_Rex", Nachname = "Hans" });
+            dataAdapter.InsertPerson(new Person { id = "2", Vorname = "Müller", Nachname = "Max" });
+            dataAdapter.InsertPerson(new Person { id = "3", Vorname = "Meier", Nachname = "Tom" });
 
             List<Person> result = dataAdapter.SelectPersons();
             Assert.AreEqual(3, result.Count);

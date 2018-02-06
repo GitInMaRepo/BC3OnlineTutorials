@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.SQLite;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BC3Server
 {
@@ -16,7 +12,6 @@ namespace BC3Server
         {
             SQLiteConnection conn = new SQLiteConnection($"Data Source={tablePath}");
             conn.Open();
-
             return conn;
         }
 
@@ -24,18 +19,12 @@ namespace BC3Server
         {
             string addDataCommand =
             $"INSERT INTO Person (Id, Name, Vorname)" +
-            $" VALUES ({person.id}, '{person.Data}', '{person.Data1}')";
+            $" VALUES ({person.id}, '{person.Nachname}', '{person.Vorname}')";
 
-            using (var conn = new SQLiteConnection($"Data Source={tablePath}"))
+            using (var conn = OpenDbConnection())
             {
-                conn.Open();
-
-                SQLiteCommand insertCmd = new SQLiteCommand(conn)
-                {
-                    CommandText = addDataCommand
-                };
-
-                insertCmd.ExecuteNonQuery();
+                SQLiteCommand cmd = CreateCommand(addDataCommand, conn);
+                cmd.ExecuteNonQuery();
             }
         }
 
@@ -43,15 +32,10 @@ namespace BC3Server
         {
             string selectDataCommand =
             $"Select * From Person Where Id = {id}";
-
-            using (var conn = new SQLiteConnection($"Data Source={tablePath}"))
+            using (var conn = OpenDbConnection())
             {
-                conn.Open();
+                SQLiteCommand selectCmd = CreateCommand(selectDataCommand, conn);
 
-                SQLiteCommand selectCmd = new SQLiteCommand(conn)
-                {
-                    CommandText = selectDataCommand
-                };
 
                 using (var reader = selectCmd.ExecuteReader())
                 {
@@ -63,8 +47,8 @@ namespace BC3Server
                     var result = new Person
                     {
                         id = reader[0].ToString(),
-                        Data = (string)reader[1],
-                        Data1 = (string)reader[2]
+                        Vorname = (string)reader[1],
+                        Nachname = (string)reader[2]
                     };
 
                     reader.Close();
@@ -79,26 +63,21 @@ namespace BC3Server
             string selectDataCommand =
             $"Select * From Person";
 
-            using (var conn = new SQLiteConnection($"Data Source={tablePath}"))
+            using (var conn = OpenDbConnection())
             {
-                conn.Open();
-
-                SQLiteCommand selectCmd = new SQLiteCommand(conn)
-                {
-                    CommandText = selectDataCommand
-                };
+                SQLiteCommand cmd = CreateCommand(selectDataCommand, conn);
 
                 var resultList = new List<Person>();
 
-                using (var reader = selectCmd.ExecuteReader())
+                using (var reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
                         var result = new Person
                         {
                             id = reader[0].ToString(),
-                            Data = (string)reader[1],
-                            Data1 = (string)reader[2]
+                            Vorname = (string)reader[1],
+                            Nachname = (string)reader[2]
                         };
 
                         resultList.Add(result);
@@ -115,19 +94,20 @@ namespace BC3Server
             string dataCommand =
             $"Delete From Person";
 
-            using (var conn = new SQLiteConnection($"Data Source={tablePath}"))
+            using (var conn = OpenDbConnection())
             {
-                conn.Open();
-
-                SQLiteCommand cmd = new SQLiteCommand(conn)
-                {
-                    CommandText = dataCommand
-                };
-
-
+                SQLiteCommand cmd = CreateCommand(dataCommand, conn);
                 cmd.ExecuteNonQuery();
 
             }
+        }
+
+        private static SQLiteCommand CreateCommand(string dataCommand, System.Data.IDbConnection conn)
+        {
+            return new SQLiteCommand(conn as SQLiteConnection)
+            {
+                CommandText = dataCommand
+            };
         }
     }
 }
