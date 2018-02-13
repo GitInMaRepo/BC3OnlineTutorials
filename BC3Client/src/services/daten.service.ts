@@ -24,7 +24,7 @@ export class DatenService {
         .map((response: Response) => response.json())
         .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
     }
-    SaveData(vorname: string, nachname: string): any {
+    SaveData(vorname: string, nachname: string): Observable<any> {
 
         const person = new Person();
         person.vorname = vorname;
@@ -34,9 +34,8 @@ export class DatenService {
         const requestOptions = new RequestOptions({headers: requestHeaders});
         const body = JSON.stringify(person);
 
-        this.http.post('http://localhost:8088/Set', body, requestOptions)
-        .catch(this.handleError)
-        .subscribe();
+        return this.http.post('http://localhost:8088/Set', body, requestOptions)
+        .catch(this.handleError);
     }
     private handleError(error: any): Promise<any> {
         console.error('An error occurred', error); // for demo purposes only

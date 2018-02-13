@@ -21,8 +21,4 @@ export class OverviewComponent implements OnInit {
     this.datenservice.GetData().subscribe(result => this.daten = result);
     this.datenservice.GetAllData().subscribe(result => this.allDaten = result);
    }
-
-   OnSubmit() {
-    this.datenservice.SaveData('Donald', 'Trump');
-   }
 }

@@ -26,6 +26,7 @@ namespace BC3Server
                 SQLiteCommand cmd = CreateCommand(addDataCommand, conn);
                 cmd.ExecuteNonQuery();
             }
+
         }
 
         public Person SelectPerson(int id)

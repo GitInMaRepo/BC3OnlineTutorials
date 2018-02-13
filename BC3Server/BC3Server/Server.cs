@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Nancy;
 using Nancy.ModelBinding;
 
@@ -35,19 +32,22 @@ namespace BC3Server
             };
 
             Options["/Set"] = parameter =>
-           {
-               return Response.AsJson(Request)
-              .WithHeader("Access-Control-Allow-Origin", "*")
-              .WithHeader("Access-Control-Allow-Methods", "POST")
-              .WithHeader("Access-Control-Allow-Headers", "Accept, Origin, Content-type");
-           };
+            {
+                return Response.AsJson(Request)
+               .WithHeader("Access-Control-Allow-Origin", "*")
+               .WithHeader("Access-Control-Allow-Methods", "POST")
+               .WithHeader("Access-Control-Allow-Headers", "Accept, Origin, Content-type");
+            };
 
             Post["/Set"] = parameter =>
-                {
-                    var model = this.Bind<Person>();
-                    da.InsertPerson(model);
-                    return null;
-                };
+            {
+                var model = this.Bind<Person>();
+                da.InsertPerson(model);
+                return Response.AsJson(Request)
+                    .WithHeader("Access-Control-Allow-Origin", "*")
+                    .WithHeader("Access-Control-Allow-Methods", "POST")
+                    .WithHeader("Access-Control-Allow-Headers", "Accept, Origin, Content-type");
+            };
         }
     }
 }
