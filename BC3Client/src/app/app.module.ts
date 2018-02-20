@@ -8,6 +8,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppDetailComponent } from './app-detail/app-detail.component';
 import { OverviewComponent } from './overview/overview.component';
 import { AddPersonComponent } from './add-person/add-person.component';
+import { HeroFormComponent } from './hero-form/hero-form.component';
 
 const appRoutes: Routes = [
   { path: 'person/:id', component: AppDetailComponent },
@@ -20,7 +21,8 @@ const appRoutes: Routes = [
     AppComponent,
     AppDetailComponent,
     OverviewComponent,
-    AddPersonComponent
+    AddPersonComponent,
+    HeroFormComponent
   ],
   imports: [
     BrowserModule,

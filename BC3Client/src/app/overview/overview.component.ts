@@ -10,15 +10,11 @@ import { Person } from '../../models/model';
 
 export class OverviewComponent implements OnInit {
   title = 'app';
-  daten: Person;
   allDaten: Person[];
 
   constructor (private datenservice: DatenService) { }
   ngOnInit() {
-    this.daten = new Person();
     this.allDaten = [];
-    this.daten.vorname = 'lese gerade daten..';
-    this.datenservice.GetData().subscribe(result => this.daten = result);
     this.datenservice.GetAllData().subscribe(result => this.allDaten = result);
    }
 }

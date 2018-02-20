@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2003
+VisualStudioVersion = 15.0.26228.21
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BC3Server", "BC3Server\BC3Server.csproj", "{5B5DA62A-9CAE-4BEE-9C80-7DEF52AC8100}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestProject1", "UnitTestProject1\UnitTestProject1.csproj", "{3AB7DAB1-3ECB-4CD7-AAC3-2B90714639DB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BC3Server.Test", "UnitTestProject1\BC3Server.Test.csproj", "{3AB7DAB1-3ECB-4CD7-AAC3-2B90714639DB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

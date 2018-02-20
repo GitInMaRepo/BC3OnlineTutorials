@@ -10,26 +10,26 @@ namespace UnitTestProject1
     public class UnitTest1
     {
         public const string tableCreationCommand =
-    @"CREATE TABLE Person (
-        Id int
-        , Name varchar(255)
-        , Vorname varchar(255))";
+                                @"CREATE TABLE Person (
+                                                        Id int
+                                                        , Name varchar(255)
+                                                        , Vorname varchar(255))";
 
         public const string addDataCommand =
-@"INSERT INTO Person (
-    Id
-    , Name
-    , Vorname)
-    VALUES 
-    (1, 'T-Rex', 'Hans')
-    , (2, 'Triceratops', 'Anja')
-    , (3, 'Procompsognathus', 'Heiko')";
+                                @"INSERT INTO Person (
+                                                        Id
+                                                        , Name
+                                                        , Vorname)
+                                                        VALUES 
+                                                        (1, 'T-Rex', 'Hans')
+                                                        , (2, 'Triceratops', 'Anja')
+                                                        , (3, 'Procompsognathus', 'Heiko')";
 
         [TestMethod]
         public void TDatenbankOeffnenUndSchliessen()
         {
             var dataAdapter = new Dataadapter();
-            var conn = dataAdapter.OpenDbConnection(); 
+            var conn = dataAdapter.OpenDbConnection();
 
             Assert.IsTrue(conn.State == System.Data.ConnectionState.Open);
 
