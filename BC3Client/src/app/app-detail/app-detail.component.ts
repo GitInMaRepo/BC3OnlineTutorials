@@ -15,7 +15,7 @@ export class AppDetailComponent implements OnInit {
     private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.daten = new Person();
+    this.daten = new Person(undefined, undefined, undefined);
     this.route.paramMap
     .switchMap((params: ParamMap) => this.datenservice.GetSinglePerson(+params.get('id')))
     .subscribe(result => this.daten = result);

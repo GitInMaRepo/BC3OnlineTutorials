@@ -1,5 +1,10 @@
 export class Person {
-    vorname: string;
-    nachname: string;
-    id: string;
+    constructor(
+        public anrede: string,
+        public vorname: string,
+        public nachname: string
+        ) { }
+
+        id: string;
 }
+

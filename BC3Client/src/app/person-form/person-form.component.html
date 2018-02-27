@@ -1,0 +1,32 @@
+<div [hidden]="submitted">
+  <div class="container">
+    <h1>Person Form</h1>
+    <form #personForm="ngForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="anreden">Anrede</label>
+        <select class="form-control" id="anreden" required [(ngModel)]="model.anrede" name="anrede">
+          <option *ngFor="let anrede of anreden" [value]="anrede">{{anrede}}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="nachname">Nachname</label>
+        <input type="text" class="form-control" id="nachname" required [(ngModel)]="model.nachname" name="nachname" #nachname="ngModel"
+          minlength="2" maxlength="10" pattern="^.{2,8}$">
+        <div [hidden]="nachname.valid || nachname.pristine" class="alert alert-danger">
+          Nachname ist zu kurz oder zu lang.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="vorname">Vorname</label>
+        <input type="text" class="form-control" id="vorname" required [(ngModel)]="model.vorname" name="vorname" #vorname="ngModel">
+        <div [hidden]="vorname.valid || vorname.pristine" class="alert alert-danger">
+          Vorname ist ein Pflichtfeld.
+        </div>
+      </div>
+      <button type="submit" (click)="personForm.reset();" class="btn btn-success" [disabled]="!personForm.form.valid">Submit</button>
+
+    </form>
+  </div>
+</div>

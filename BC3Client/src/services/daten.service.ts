@@ -18,9 +18,7 @@ export class DatenService {
     }
     SaveData(vorname: string, nachname: string): Observable<any> {
 
-        const person = new Person();
-        person.vorname = vorname;
-        person.nachname = nachname;
+        const person = new Person('', vorname, nachname);
 
         const requestHeaders = new Headers({'Content-Type': 'application/json'});
         const requestOptions = new RequestOptions({headers: requestHeaders});
