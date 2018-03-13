@@ -9,6 +9,7 @@ import { AppDetailComponent } from './app-detail/app-detail.component';
 import { OverviewComponent } from './overview/overview.component';
 import { AddPersonComponent } from './add-person/add-person.component';
 import { PersonFormComponent } from './person-form/person-form.component';
+import { RandomPersonComponent } from './random-person/random-person.component';
 
 const appRoutes: Routes = [
   { path: 'person/:id', component: AppDetailComponent },
@@ -22,7 +23,8 @@ const appRoutes: Routes = [
     AppDetailComponent,
     OverviewComponent,
     AddPersonComponent,
-    PersonFormComponent
+    PersonFormComponent,
+    RandomPersonComponent
   ],
   imports: [
     BrowserModule,

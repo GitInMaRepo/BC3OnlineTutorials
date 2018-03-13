@@ -27,6 +27,12 @@ export class DatenService {
         return this.http.post('http://localhost:8088/Set', body, requestOptions)
         .catch(this.handleError);
     }
+    GetRandomPerson(): Observable<Person> {
+
+        return this.http.get('http://localhost:8080/')
+        .map((response: Response) => response.json())
+        .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+    }
     private handleError(error: any): Promise<any> {
         console.error('An error occurred', error); // for demo purposes only
         return Promise.reject(error.message || error);
